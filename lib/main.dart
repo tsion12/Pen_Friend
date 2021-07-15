@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'search_screen.dart';
 import 'timeline_screen.dart';
 import 'bottom_nav.dart';
+import 'signup_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
         'timeline': (context) => Timeline(),
         'search': (context) => SearchPage(),
         'profile': (context) => ProfilePage(),
+        'signup': (context) => Signup(),
+        'login': (context) => Login()
       },
     );
   }

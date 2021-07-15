@@ -61,6 +61,7 @@ class _NotificatonScreenState extends State<NotificatonScreen> {
                     'View Post',
                     style: TextStyle(color: Theme.of(context).accentColor),
                   ),
+                  onPressed: () {},
                 ),
               ),
             ),
