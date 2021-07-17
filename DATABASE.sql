@@ -1,13 +1,15 @@
 CREATE TABLE app_user(
-    user_id bigint GENERATED ALWAYS AS IDENTITY
+    id bigint GENERATED ALWAYS AS IDENTITY
              PRIMARY KEY,
     pen_name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    number_of_mentors int,
-    number_of_mentees int,
+    number_of_mentors int DEFAULT 0,
+    number_of_mentees int DEFAULT 0,
     group_id bigint references group_chat (group_id) ON UPDATE CASCADE ON DELETE SET NULL,
-    profile_id bigint references user_profile (profile_id)
+    profile_id bigint references user_profile (profile_id),
+    createdAt Date,
+    updatedAt Date
 );
 
 CREATE TABLE user_profile(

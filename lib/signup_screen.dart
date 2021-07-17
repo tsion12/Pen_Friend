@@ -55,7 +55,7 @@ class _SignupState extends State<Signup> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.12),
+                      top: MediaQuery.of(context).size.height * 0.03),
                   child: Image(
                     width: 300,
                     image: AssetImage('images/logintitle.png'),
@@ -64,24 +64,10 @@ class _SignupState extends State<Signup> {
                 Form(
                   key: _form,
                   child: Container(
-                    height: 500,
+                    height: 700,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsets.only(top: 20, left: 20, right: 20),
-                            child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: ReusedTextFormField(
-                                hint: 'PenName',
-                                index: 'penName',
-                              ),
-                            ),
-                          ),
                           Padding(
                             padding:
                                 EdgeInsets.only(top: 20, left: 20, right: 20),
@@ -97,7 +83,8 @@ class _SignupState extends State<Signup> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(20),
+                            padding:
+                                EdgeInsets.only(top: 20, left: 20, right: 20),
                             child: Container(
                                 height: 60,
                                 decoration: BoxDecoration(
@@ -109,8 +96,7 @@ class _SignupState extends State<Signup> {
                                 )),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(top: 20, left: 20, right: 20),
+                            padding: EdgeInsets.all(20),
                             child: Container(
                               height: 60,
                               decoration: BoxDecoration(
@@ -128,43 +114,88 @@ class _SignupState extends State<Signup> {
                               height: 50,
                               width: 350,
                               child: ElevatedButton(
-                                onPressed: () async {
-                                  if (_saveForm()) {
-                                    await signUp(
-                                      authData['penName'],
-                                      authData['email'],
-                                      authData['password'],
-                                    ).then((value) {
-                                      Navigator.pushReplacementNamed(
-                                          context, 'login');
-                                    }).onError((error, stackTrace) {
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) {
-                                            return AlertDialog(
-                                              title: Text(' Signup error'),
-                                              content: Text(
-                                                  'faild to create user account'),
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: Text('ok'))
-                                              ],
-                                            );
-                                          });
-                                    });
-                                  }
-                                },
-                                child: Text('CREATE AN ACCOUNT'),
-                                style: ElevatedButton.styleFrom(
-                                    primary:
-                                        Theme.of(context).colorScheme.secondary,
-                                    shape: StadiumBorder()),
+                                  onPressed: () async {
+                                    if (_saveForm()) {
+                                      await signUp(
+                                        ///////////////
+                                        authData['penName'],
+                                        ////////////////
+                                        authData['email'],
+                                        authData['password'],
+                                      ).then((value) {
+                                        Navigator.pushReplacementNamed(
+                                            context, 'login');
+                                      }).onError((error, stackTrace) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                title: Text(' Signup error'),
+                                                content: Text(
+                                                    'faild to create user account'),
+                                                actions: [
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: Text('ok'))
+                                                ],
+                                              );
+                                            });
+                                      });
+                                    }
+                                  },
+                                  child: Text('CREATE AN ACCOUNT'),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      shape: StadiumBorder())),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20, bottom: 0),
+                            child: Center(
+                              child: Text(
+                                '_______________________ or __________________________',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(1),
+                            margin: EdgeInsets.only(top: 5),
+                            height: 100,
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      print('google tapped');
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 80,
+                                      child: ImageIcon(
+                                        AssetImage('images/google1.png'),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                        width: 50,
+                                        height: 80,
+                                        child: ImageIcon(
+                                            AssetImage('images/phone.png'))),
+                                  ),
+                                ]),
                           ),
                         ],
                       ),
@@ -226,7 +257,7 @@ class ReusedTextFormField extends StatelessWidget {
         }
         if (index == 'cpassword') {
           if (value != authData['password']) {
-            return 'password doesnt match ';
+            return 'password doesn\'t match ';
           }
         }
         return null;
